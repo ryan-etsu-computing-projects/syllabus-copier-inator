@@ -36,8 +36,8 @@ block_cipher = None
 APP_NAME        = "Syllabus Copier-inator 1000"
 EXE_NAME        = "SyllabusCopierInator1000"   # no spaces – friendlier on Windows
 SCRIPT          = "syllabus_copier_inator.py"
-ICON_WIN        = "icon.ico"   if os.path.exists("icon.ico")  else None
-ICON_MAC        = "icon.icns"  if os.path.exists("icon.icns") else None
+ICON_WIN        = "img/icon.ico"   if os.path.exists("img/icon.ico")  else None
+ICON_MAC        = "img/icon.icns"  if os.path.exists("img/icon.icns") else None
 
 IS_MAC          = sys.platform == "darwin"
 IS_WIN          = sys.platform == "win32"
@@ -75,36 +75,64 @@ a = Analysis(
 # ── PYZ archive ───────────────────────────────────────────────────────────────
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
-# ── EXE (the actual executable / launcher) ────────────────────────────────────
-exe = EXE(
-    pyz,
-    a.scripts,
-    [],
-    exclude_binaries=True,          # binaries go into COLLECT, keeping exe small
-    name=EXE_NAME,
-    debug=False,
-    bootloader_ignore_signals=False,
-    strip=False,
-    upx=True,                       # compress with UPX if available; set False to skip
-    console=False,                  # False = no terminal window on launch (GUI app)
-    disable_windowed_traceback=False,
-    target_arch=None,               # None = native arch; set "x86_64" or "arm64" to cross-compile
-    codesign_identity=None,         # macOS: set to your Developer ID string to sign
-    entitlements_file=None,
-    icon=ICON_WIN if IS_WIN else ICON_MAC,
-)
+# ── EXE ───────────────────────────────────────────────────────────────────────
+# On Windows  → onefile mode: binaries/datas are packed INTO the exe so it is
+#               fully portable. The exe self-extracts to a temp dir on launch.
+# On macOS    → onedir mode: binaries stay separate and get collected into the
+#               .app bundle by BUNDLE below (onefile is unsupported by BUNDLE).
+if IS_WIN:
+    exe = EXE(
+        pyz,
+        a.scripts,
+        a.binaries,         # ← pack binaries directly into the exe
+        a.zipfiles,         # ← pack zipfiles directly into the exe
+        a.datas,            # ← pack datas directly into the exe
+        name=EXE_NAME,
+        debug=False,
+        bootloader_ignore_signals=False,
+        strip=False,
+        upx=True,           # compress with UPX if available; set False to skip
+        upx_exclude=[],
+        runtime_tmpdir=None,  # None = OS default temp dir; or set an explicit path
+        console=False,      # False = no terminal window on launch (GUI app)
+        disable_windowed_traceback=False,
+        target_arch=None,
+        codesign_identity=None,
+        entitlements_file=None,
+        icon=ICON_WIN,
+    )
+    # No COLLECT needed in onefile mode — the exe IS the distribution artifact.
 
-# ── COLLECT (one-dir bundle, easier to inspect / debug) ──────────────────────
-coll = COLLECT(
-    exe,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
-    strip=False,
-    upx=True,
-    upx_exclude=[],
-    name=EXE_NAME,
-)
+else:
+    # macOS onedir — BUNDLE requires binaries to be external (via COLLECT)
+    exe = EXE(
+        pyz,
+        a.scripts,
+        [],
+        exclude_binaries=True,
+        name=EXE_NAME,
+        debug=False,
+        bootloader_ignore_signals=False,
+        strip=False,
+        upx=True,
+        console=False,
+        disable_windowed_traceback=False,
+        target_arch=None,
+        codesign_identity=None,
+        entitlements_file=None,
+        icon=ICON_MAC,
+    )
+
+    coll = COLLECT(
+        exe,
+        a.binaries,
+        a.zipfiles,
+        a.datas,
+        strip=False,
+        upx=True,
+        upx_exclude=[],
+        name=EXE_NAME,
+    )
 
 # ── BUNDLE (.app) – macOS only ────────────────────────────────────────────────
 if IS_MAC:
