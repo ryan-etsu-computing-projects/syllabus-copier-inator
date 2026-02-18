@@ -102,7 +102,7 @@ A summary dialog will confirm what was copied (and flag any errors).
 Copied files follow this format:
 
 ```
-SubjectCode_CourseCode_SectionNumber_CRN_5DigitCRN_LastName.pdf
+CSCI_1111_111_CRN_11111_LastName.pdf
 ```
 
 Example: `CSCI_1100_001_CRN_14263_Haas.pdf`
