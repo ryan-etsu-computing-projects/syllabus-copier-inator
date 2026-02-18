@@ -253,7 +253,7 @@ class SyllabusCopierApp(tk.Tk):
                   padx=10, pady=6).pack(side=tk.LEFT, padx=8)
 
         tk.Button(btn_frame, text="Exit", command=self.destroy,
-                  bg="#ff7f7f", fg="white", font=("Helvetica", 10),
+                  bg="#fc8a8a", fg="black", font=("Helvetica", 10),
                   relief=tk.FLAT, cursor="hand2",
                   padx=12, pady=6).pack(side=tk.RIGHT)
 
