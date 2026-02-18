@@ -4,14 +4,16 @@
 
 ---
 
-## Downloads
+## Downloads (Executables)
 
 | Platform | File | Version
 |---|---|---|
-| 🪟 **Windows** | [SyllabusCopierInator1000.exe](https://github.com/ryan-etsu-computing-projects/syllabus-copier-inator/raw/refs/heads/main/releases/SyllabusCopierInator1000.exe) | 1000 |
-| 🍎 **macOS** | [Syllabus Copier-Inator 1000.app.zip](https://github.com/ryan-etsu-computing-projects/syllabus-copier-inator/raw/refs/heads/main/releases/Syllabus%20Copier-inator%201000.zip) | 1000 |
+| 🪟 **Windows** | [SyllabusCopierInator1000](https://github.com/ryan-etsu-computing-projects/syllabus-copier-inator/raw/refs/heads/main/releases/SyllabusCopierInator1000.exe) | 1000 |
+| 🍎 **macOS** | [Syllabus Copier-Inator 1000](https://github.com/ryan-etsu-computing-projects/syllabus-copier-inator/raw/refs/heads/main/releases/Syllabus%20Copier-inator%201000.zip) | 1000 |
 
 ---
+
+<img src="img/syllabus-copier.png" alt="Syllabus Copier-inator Screenshot" width="600" style="margin-left: 40px;">
 
 ## ⚠️ First Launch Instructions ⚠️
 
@@ -28,10 +30,16 @@ The app will open. You won't need to do this again on subsequent launches.
 
 ### 🍎 macOS
 
-1. Unzip **`Syllabus Copier-Inator 1000.app.zip`** and move the `.app` to your Applications folder (or wherever you'd like to keep it).
+1. Unzip **`Syllabus Copier-Inator 1000.zip`** (if necessary) and move the app to your Applications folder (or wherever you'd like to keep it).
 2. Double-click the app to launch. macOS will immediately show a pop-up saying it cannot verify the app is free of malware. Click **"Done"** to dismiss it — do *not* click "Move to Trash".
+  
+<img src="img/1_mac_app_not_opened.png" alt="App Not Opened pop-up" width="300" style="margin-left: 40px;">
+
 3. Open **System Settings** → **Privacy & Security** and scroll to the bottom of the page. You should see a message about the app being blocked, with an **"Open Anyway"** button. Click it.
+   
 4. Double-click the app again. This time it will open normally.
+
+<img src="img/2_mac_open_anyway.png" alt="App Not Opened pop-up" width="500" style="margin-left: 40px;">
 
 You only need to do this once. macOS will remember your choice for future launches.
 
@@ -74,13 +82,15 @@ Click **🗂 Copy 'Em!** when your table is complete. The app will validate all 
 
 ```
 your_syllabus_folder/
-  copies/
+  CSCI 1100 Online Asynch Syllabus 202610.pdf <-- Original file
+  CSCI 1100 On-Site Syllabus 202610.pdf       <-- Original file
+  copies/                                     <-- All your new copies
     CSCI 1100 On-Site Syllabus_copies/
       CSCI_1100_001_CRN_14263_Haas.pdf
       CSCI_1100_002_CRN_14265_Lehrfeld.pdf
     CSCI 1100 Online Asynch Syllabus_copies/
       CSCI_1100_901_CRN_14274_Haas.pdf
-      CSCI_1100_902_CRN_14277_Young.pdf
+      CSCI_1100_902_CRN_14277_Haas.pdf
 ```
 
 A summary dialog will confirm what was copied (and flag any errors).
