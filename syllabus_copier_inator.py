@@ -169,11 +169,11 @@ class SyllabusCopierApp(tk.Tk):
         self.folder_lbl.pack(side=tk.LEFT, pady=6)
 
         tk.Button(folder_frame, text="📂 Browse…", command=self._browse_folder,
-                  bg="#5b9bd5", fg="white", relief=tk.FLAT, cursor="hand2",
+                  bg="#a4d1fc", fg="black", relief=tk.FLAT, cursor="hand2",
                   padx=8).pack(side=tk.LEFT, padx=8, pady=6)
 
         tk.Button(folder_frame, text="↺ Refresh PDFs", command=self._refresh_pdfs,
-                  bg="#70ad47", fg="white", relief=tk.FLAT, cursor="hand2",
+                  bg="#b6e894", fg="black", relief=tk.FLAT, cursor="hand2",
                   padx=8).pack(side=tk.LEFT, padx=0, pady=6)
 
         # ── Column headers ──
